@@ -1,12 +1,4 @@
-# 07 - Digitalizando la colección de música de los abuelos
-```
-Curso: 2021- 2022
-Universidad: Universidad de La laguna
-Asignatura: Desarrollo de Sistemas Informaticos
-Herramienta: Visual Studio Code
-Lenguaje de programción: TypeScipt
-```
-
+# 012 -  API Node/Express de gestión de información musical
 ```
 >>  PROYECTO: Un sistema de bibliteca musical
 >>  EQUIPO: Grupo_O

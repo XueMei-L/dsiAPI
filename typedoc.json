@@ -1,0 +1,14 @@
+{
+    "out": "./docs",
+    "entryPoints": [
+        "./src/album.ts",
+        "./src/artistas.ts",
+        "./src/cancion.ts",
+        "./src/generosMusical.ts",
+        "./src/gestor.ts",
+        "./src/grupos.ts",
+        "./src/playlist.ts",
+        "./src/jsonPlaylistCollection.ts",
+        "./src/app.ts"
+    ]
+}

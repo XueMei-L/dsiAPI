@@ -22,18 +22,18 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   genre: {
     type: [String],
     required: true,
-    trim: true
+    trim: true,
   },
   songs: {
     type: [String],
     required: true,
     trim: true,
-  },  
+  },
   listeners: {
     type: Number,
     required: true,
     trim: true,
-  }
+  },
 });
 
 export const Artist = model<ArtistDocumentInterface>('Artist', ArtistSchema);

@@ -1,6 +1,7 @@
 import express from 'express';
 import {Artist} from '../models/artista';
 import {Song} from '../models/cancion';
+import {Playlist} from '../models/playlist';
 
 
 export const postRouter = express.Router();
@@ -30,3 +31,17 @@ postRouter.post('/song', (req, res) => {
     res.status(400).send(error);
   });
 });
+
+/**
+ * Creacion de una playlist
+ */
+postRouter.post('/playlist', (req, res) => {
+  const playlist = new Playlist(req.body);
+
+  playlist.save().then((playlist) => {
+    res.status(201).send(playlist);
+  }).catch((error) => {
+    res.status(400).send(error);
+  });
+});
+

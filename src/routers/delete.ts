@@ -1,7 +1,7 @@
 import express from 'express';
 import {Artist} from '../models/artista';
 import {Song} from '../models/cancion';
-
+import {Playlist} from '../models/playlist';
 
 export const deleteRouter = express.Router();
 
@@ -47,7 +47,7 @@ deleteRouter.delete('/artist/:id', (req, res) => {
 deleteRouter.delete('/song', (req, res) => {
   if (!req.query.title) {
     res.status(400).send({
-      error: 'A name must be provided',
+      error: 'A title must be provided',
     });
   } else {
     Song.findOneAndDelete({title: req.query.title.toString()}).then((song) => {
@@ -71,6 +71,42 @@ deleteRouter.delete('/song/:id', (req, res) => {
       res.status(404).send();
     } else {
       res.send(song);
+    }
+  }).catch(() => {
+    res.status(400).send();
+  });
+});
+
+/**
+ * Eliminar una playlist mediante query string
+ */
+deleteRouter.delete('/playlist', (req, res) => {
+  if (!req.query.title) {
+    res.status(400).send({
+      error: 'A title must be provided',
+    });
+  } else {
+    Playlist.findOneAndDelete({title: req.query.title.toString()}).then((playlist) => {
+      if (!playlist) {
+        res.status(404).send();
+      } else {
+        res.send(playlist);
+      }
+    }).catch(() => {
+      res.status(400).send();
+    });
+  }
+});
+
+/**
+ * Eliminar una playlist mediante un parámetro
+ */
+deleteRouter.delete('/playlist/:id', (req, res) => {
+  Playlist.findByIdAndDelete(req.params.id).then((playlist) => {
+    if (!playlist) {
+      res.status(404).send();
+    } else {
+      res.send(playlist);
     }
   }).catch(() => {
     res.status(400).send();

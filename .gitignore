@@ -45,3 +45,5 @@ yarn.lock
 .nyc_output/**/*
 
 .coveralls.yml
+
+.vscode

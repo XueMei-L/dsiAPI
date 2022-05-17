@@ -9,96 +9,102 @@ export const getRouter = express.Router();
 /**
  * Consulta de un artista mediante query string
  */
-getRouter.get('/artist', (req, res) => {
+getRouter.get('/artist', async (req, res) => {
   const filter = req.query.name?{name: req.query.name.toString()}:{};
 
-  Artist.find(filter).then((artist) => {
+  try {
+    const artist = await Artist.find(filter);
     if (artist.length !== 0) {
-      res.send(artist);
-    } else {
-      res.status(404).send();
+      return res.send(artist);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.status(404).send();
+  } catch (error) {
+    return res.status(500).send();
+  }
 });
 
 /**
  * Consulta de un artista mediante un parámetro
  */
-getRouter.get('/artist/:id', (req, res) => {
-  Artist.findById(req.params.id).then((artist) => {
+getRouter.get('/artist/:id', async (req, res) => {
+  try {
+    const artist = await Artist.findById(req.params.id);
     if (!artist) {
       res.status(404).send();
-    } else {
-      res.send(artist);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.send(artist);
+  } catch (error) {
+    return res.status(500).send();
+  }
 });
 
 
 /**
  * Consulta de una cancion mediante query string
  */
-getRouter.get('/song', (req, res) => {
+getRouter.get('/song', async (req, res) => {
   const filter = req.query.title?{title: req.query.title.toString()}:{};
 
-  Song.find(filter).then((song) => {
+  try {
+    const song = await Song.find(filter);
     if (song.length !== 0) {
-      res.send(song);
-    } else {
-      res.status(404).send();
+      return res.send(song);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.status(404).send();
+  } catch (error) {
+    return res.status(500).send();
+  }
 });
 
 /**
  * Consulta de una cancion mediante un parámetro
  */
-getRouter.get('/song/:id', (req, res) => {
-  Song.findById(req.params.id).then((song) => {
+getRouter.get('/song/:id', async (req, res) => {
+  try {
+    const song = await Song.findById(req.params.id);
     if (!song) {
       res.status(404).send();
-    } else {
-      res.send(song);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.send(song);
+  } catch (error) {
+    return res.status(500).send();
+  }
 });
 
 /**
  * Consulta de una playlist mediante query string
  */
-getRouter.get('/playlist', (req, res) => {
+getRouter.get('/playlist', async (req, res) => {
   const filter = req.query.title?{title: req.query.title.toString()}:{};
 
-  Playlist.find(filter).then((playlist) => {
+  try {
+    const playlist = await Playlist.find(filter);
     if (playlist.length !== 0) {
-      res.send(playlist);
-    } else {
-      res.status(404).send();
+      return res.send(playlist);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.status(404).send();
+  } catch (error) {
+    return res.status(500).send();
+  }
 });
 
 /**
  * Consulta de una playlist mediante un parámetro
  */
-getRouter.get('/playlist/:id', (req, res) => {
-  Playlist.findById(req.params.id).then((playlist) => {
+getRouter.get('/playlist/:id', async (req, res) => {
+  try {
+    const playlist = await Playlist.findById(req.params.id);
     if (!playlist) {
       res.status(404).send();
-    } else {
-      res.send(playlist);
     }
-  }).catch(() => {
-    res.status(500).send();
-  });
+
+    return res.send(playlist);
+  } catch (error) {
+    return res.status(500).send();
+  }
 });

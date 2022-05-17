@@ -1,6 +1,6 @@
 # 012 -  API Node/Express de gestión de información musical
 ```
->>  PROYECTO: Un sistema de bibliteca musical
+>>  PROYECTO: API Node/Express de gestión de información musical
 >>  EQUIPO: Grupo_O
 >>  CURSO: 2021 - 2022
 >>  COMPONENTES: XueMei Lin

@@ -1,5 +1,8 @@
 import {Document, Schema, model} from 'mongoose';
 
+/**
+ * Interfaz de un artista
+ */
 interface ArtistDocumentInterface extends Document {
   name: string,
   genre: string[],
@@ -7,6 +10,9 @@ interface ArtistDocumentInterface extends Document {
   listeners: number
 }
 
+/**
+ * Esquema de un artista de mongoose
+ */
 const ArtistSchema = new Schema<ArtistDocumentInterface>({
   name: {
     type: String,
@@ -36,4 +42,7 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   },
 });
 
+/**
+ * Modelo de un artista de mongoose
+ */
 export const Artist = model<ArtistDocumentInterface>('Artist', ArtistSchema);

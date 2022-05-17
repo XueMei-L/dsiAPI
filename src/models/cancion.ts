@@ -1,5 +1,8 @@
 import {Document, Schema, model} from 'mongoose';
 
+/**
+ * Interfaz de una canción
+ */
 export interface SongDocumentInterface extends Document {
   title: string,
   artist?: string,
@@ -9,6 +12,9 @@ export interface SongDocumentInterface extends Document {
   totalViews?: number
 }
 
+/**
+ * Esquema de una canción de mongoose
+ */
 const SongSchema = new Schema<SongDocumentInterface>({
   title: {
     type: String,
@@ -44,4 +50,7 @@ const SongSchema = new Schema<SongDocumentInterface>({
   },
 });
 
+/**
+ * Modelo de una cancion de mongoose
+ */
 export const Song = model<SongDocumentInterface>('Song', SongSchema);

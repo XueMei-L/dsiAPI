@@ -8,107 +8,119 @@ export const deleteRouter = express.Router();
 /**
  * Eliminar un artista mediante query string
  */
-deleteRouter.delete('/artist', (req, res) => {
+deleteRouter.delete('/artist', async (req, res) => {
   if (!req.query.name) {
-    res.status(400).send({
+    return res.status(400).send({
       error: 'A name must be provided',
     });
-  } else {
-    Artist.findOneAndDelete({name: req.query.name.toString()}).then((artist) => {
-      if (!artist) {
-        res.status(404).send();
-      } else {
-        res.send(artist);
-      }
-    }).catch(() => {
-      res.status(400).send();
-    });
+  }
+
+  try {
+    const artist = await Artist.findOneAndDelete({name: req.query.name.toString()});
+
+    if (!artist) {
+      return res.status(404).send();
+    }
+
+    return res.send(artist);
+  } catch (error) {
+    res.status(400).send();
   }
 });
 
 /**
  * Eliminar un artista mediante un parámetro
  */
-deleteRouter.delete('/artist/:id', (req, res) => {
-  Artist.findByIdAndDelete(req.params.id).then((artist) => {
+deleteRouter.delete('/artist/:id', async (req, res) => {
+  try {
+    const artist = await Artist.findByIdAndDelete(req.params.id);
+
     if (!artist) {
-      res.status(404).send();
-    } else {
-      res.send(artist);
+      return res.status(404).send();
     }
-  }).catch(() => {
-    res.status(400).send();
-  });
+
+    return res.send(artist);
+  } catch (error) {
+    return res.status(400).send();
+  }
 });
 
 /**
  * Eliminar una cancion mediante query string
  */
-deleteRouter.delete('/song', (req, res) => {
+deleteRouter.delete('/song', async (req, res) => {
   if (!req.query.title) {
-    res.status(400).send({
+    return res.status(400).send({
       error: 'A title must be provided',
     });
-  } else {
-    Song.findOneAndDelete({title: req.query.title.toString()}).then((song) => {
-      if (!song) {
-        res.status(404).send();
-      } else {
-        res.send(song);
-      }
-    }).catch(() => {
-      res.status(400).send();
-    });
+  }
+
+  try {
+    const song = await Song.findOneAndDelete({title: req.query.title.toString()});
+
+    if (!song) {
+      return res.status(404).send();
+    }
+
+    return res.send(song);
+  } catch (error) {
+    res.status(400).send();
   }
 });
 
 /**
  * Eliminar una cancion mediante un parámetro
  */
-deleteRouter.delete('/song/:id', (req, res) => {
-  Song.findByIdAndDelete(req.params.id).then((song) => {
+deleteRouter.delete('/song/:id', async (req, res) => {
+  try {
+    const song = await Song.findByIdAndDelete(req.params.id);
+
     if (!song) {
-      res.status(404).send();
-    } else {
-      res.send(song);
+      return res.status(404).send();
     }
-  }).catch(() => {
-    res.status(400).send();
-  });
+
+    return res.send(song);
+  } catch (error) {
+    return res.status(400).send();
+  }
 });
 
 /**
  * Eliminar una playlist mediante query string
  */
-deleteRouter.delete('/playlist', (req, res) => {
+deleteRouter.delete('/playlist', async (req, res) => {
   if (!req.query.title) {
-    res.status(400).send({
+    return res.status(400).send({
       error: 'A title must be provided',
     });
-  } else {
-    Playlist.findOneAndDelete({title: req.query.title.toString()}).then((playlist) => {
-      if (!playlist) {
-        res.status(404).send();
-      } else {
-        res.send(playlist);
-      }
-    }).catch(() => {
-      res.status(400).send();
-    });
+  }
+
+  try {
+    const playlist = await Playlist.findOneAndDelete({title: req.query.title.toString()});
+
+    if (!playlist) {
+      return res.status(404).send();
+    }
+
+    return res.send(playlist);
+  } catch (error) {
+    res.status(400).send();
   }
 });
 
 /**
  * Eliminar una playlist mediante un parámetro
  */
-deleteRouter.delete('/playlist/:id', (req, res) => {
-  Playlist.findByIdAndDelete(req.params.id).then((playlist) => {
+deleteRouter.delete('/playlist/:id', async (req, res) => {
+  try {
+    const playlist = await Playlist.findByIdAndDelete(req.params.id);
+
     if (!playlist) {
-      res.status(404).send();
-    } else {
-      res.send(playlist);
+      return res.status(404).send();
     }
-  }).catch(() => {
-    res.status(400).send();
-  });
+
+    return res.send(playlist);
+  } catch (error) {
+    return res.status(400).send();
+  }
 });

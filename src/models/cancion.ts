@@ -5,9 +5,9 @@ import {Document, Schema, model} from 'mongoose';
  */
 export interface SongDocumentInterface extends Document {
   title: string,
-  artist?: string,
+  artist: string,
   duration?: number,
-  gender?: string[],
+  gender: string[],
   single?: boolean,
   totalViews?: number
 }
@@ -19,12 +19,17 @@ const SongSchema = new Schema<SongDocumentInterface>({
   title: {
     type: String,
     unique: true,
-    required: true,
+    required: [true, 'La cancion debe tener un titulo'],
     trim: true,
+    validate: (value: string) => {
+      if (!value.match(/^[A-Z]/)) {
+        throw new Error('The title of the song must start with a capital letter');
+      }
+    },
   },
   artist: {
     type: String,
-    required: false,
+    required: [true, 'La canción debe tener artistas que la cantan'],
     trim: true,
   },
   duration: {
@@ -36,7 +41,7 @@ const SongSchema = new Schema<SongDocumentInterface>({
   },
   gender: {
     type: [String],
-    required: false,
+    required: [true, 'La cancion debe tener mínimo un género asociado'],
     trim: true,
   },
   single: {
@@ -49,6 +54,7 @@ const SongSchema = new Schema<SongDocumentInterface>({
     type: Number,
     required: false,
     trim: true,
+    default: 0,
   },
 });
 

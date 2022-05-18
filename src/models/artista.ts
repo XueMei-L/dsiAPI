@@ -7,7 +7,7 @@ interface ArtistDocumentInterface extends Document {
   name: string,
   genre: string[],
   songs: string[],
-  listeners: number
+  list?: number
 }
 
 /**
@@ -17,7 +17,7 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   name: {
     type: String,
     unique: true,
-    required: true,
+    required: [true, 'El artista debe tener un nombre'],
     trim: true,
     validate: (value: string) => {
       if (!value.match(/^[A-Z]/)) {
@@ -27,18 +27,18 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
   },
   genre: {
     type: [String],
-    required: true,
+    required: [true, 'El artista debe tener géneros musicales asociados'],
     trim: true,
   },
   songs: {
     type: [String],
-    required: true,
+    required: [true, 'El artista debe tener canciones'],
     trim: true,
   },
   list: {
     type: Number,
-    required: true,
     trim: true,
+    default: 0,
   },
 });
 

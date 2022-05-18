@@ -6,7 +6,7 @@ import {Document, model, Schema} from 'mongoose';
 interface PlaylistDocumentInterface extends Document {
   title: string,
   songs: string[],
-  duration: number,
+  duration?: number,
   genres:string[]
 }
 
@@ -16,20 +16,21 @@ interface PlaylistDocumentInterface extends Document {
 const PlaylistSchema = new Schema<PlaylistDocumentInterface>({
   title: {
     type: String,
-    required: true,
+    required: [true, 'La playlist debe tener un título'],
     unique: true,
   },
   songs: {
     type: [String],
-    required: true,
+    required: [true, 'Deben haber canciones dentro de la playlist'],
   },
   duration: {
     type: Number,
-    required: true,
+    required: false,
+    default: 0,
   },
   genres: {
     type: [String],
-    required: true,
+    required: [true, 'La playlist debe tener asociada géneros musicales'],
   },
 });
 

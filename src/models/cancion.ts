@@ -31,6 +31,8 @@ const SongSchema = new Schema<SongDocumentInterface>({
     type: Number,
     required: false,
     trim: true,
+    min: 0,
+    max: 20,
   },
   gender: {
     type: [String],

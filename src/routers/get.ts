@@ -31,7 +31,7 @@ getRouter.get('/artist/:id', async (req, res) => {
   try {
     const artist = await Artist.findById(req.params.id);
     if (!artist) {
-      res.status(404).send();
+      return res.status(404).send();
     }
 
     return res.send(artist);
@@ -66,7 +66,7 @@ getRouter.get('/song/:id', async (req, res) => {
   try {
     const song = await Song.findById(req.params.id);
     if (!song) {
-      res.status(404).send();
+      return res.status(404).send();
     }
 
     return res.send(song);
@@ -100,7 +100,7 @@ getRouter.get('/playlist/:id', async (req, res) => {
   try {
     const playlist = await Playlist.findById(req.params.id);
     if (!playlist) {
-      res.status(404).send();
+      return res.status(404).send();
     }
 
     return res.send(playlist);

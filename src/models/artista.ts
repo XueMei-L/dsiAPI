@@ -35,7 +35,7 @@ const ArtistSchema = new Schema<ArtistDocumentInterface>({
     required: true,
     trim: true,
   },
-  listeners: {
+  list: {
     type: Number,
     required: true,
     trim: true,

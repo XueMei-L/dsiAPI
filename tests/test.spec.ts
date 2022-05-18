@@ -74,7 +74,7 @@ describe('Test funciones asíncronas Artista', () => {
   });
 
   it('Buscar en la base de datos el artista: Bad Bunny-original', async () => {
-    const data = await mainMusic('get', 'http://localhost:3000/artista?name=Bad-Bunny-original');
+    const data = await mainMusic('get', 'https://grupo-o-api-rest.herokuapp.com/artista?name=Bad-Bunny-original');
     expect(data.status).to.equal(200);
   });
 
@@ -94,6 +94,3 @@ describe('Test funciones asíncronas Artista', () => {
 //     const response = await mainAliment('post', 'pagina de heroku/parametro');
 //     expect(response.status).to.equal(201);
 //   });
-
-// sudo snap install --classic heroku
-// heroku apps:create --region eu edu-segredo-notes-app

@@ -4,11 +4,15 @@
   "description": "``` >>  PROYECTO: Un sistema de bibliteca musical >>  EQUIPO: Grupo_O >>  COMPONENTES: XueMei Lin >>               Noelia Ibáñez Silvestre >>               Andrea Hernandez Martín >>               Stephanie Andreína Arismendi Escobar >>               Carlos Pío Reyes >>  EMAIL:       alu0101225845@ull.edu.es >>               alu0101225555@ull.edu.es >>               alu0101119137@ull.edu.es >>               alu0101351728@ull.edu.es >>               alu0101132945@ull.edu.es >>  UNIVERSIDAD: Universidad de La Laguna >>  ASIGNATURA:  Desarrollo de Sistemas informáticos >>  VERSION:     1.0.0 ```",
   "main": "index.js",
   "scripts": {
-    "start": "tsc-watch --onSuccess \"node dist/app.js\"",
+    "heroku-postbuild": "tsc",
+    "start": "node dist/index.js",
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov",
     "doc": "typedoc --includes ./src/**/*.ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "keywords": [],
   "author": "",
